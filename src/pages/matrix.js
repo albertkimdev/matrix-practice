@@ -98,8 +98,10 @@ export default class matrix extends React.Component {
     heightRem: 0,
   }
   componentDidMount() {
-    this.state.widthRem = window.screen.width / 32
-    this.state.heightRem = window.screen.height / 36.8
+    this.setState({
+      widthRem: window.screen.width / 32,
+      heightRem: window.screen.height / 36.8,
+    })
   }
   render() {
     if (this.state.widthRem === 0 || this.state.heightRem === 0) {
