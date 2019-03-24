@@ -92,24 +92,39 @@ const Letter = styled.p`
   animation-duration: 0.1s, 2.5s, 0.8s; */
 `
 
-export default function matrix() {
-  const widthRem = window.screen.width / 32
-  const heightRem = window.screen.height / 36.8
-  // console.log(widthRem)
-  // console.log(heightRem)
-  const lengthLetters = Array.from({ length: heightRem + 1 }, (_, i) => i)
-  const columnLength = Array.from({ length: widthRem }, (_, i) => i)
-  // const columnLength = Array.from({ length: 1 }, (_, i) => i)
+export default class matrix extends React.Component {
+  state = {
+    widthRem: 0,
+    heightRem: 0,
+  }
+  componentDidMount() {
+    this.state.widthRem = window.screen.width / 32
+    this.state.heightRem = window.screen.height / 36.8
+  }
+  render() {
+    if (this.state.widthRem === 0 || this.state.heightRem === 0) {
+      return null
+    }
 
-  return (
-    <Wrapper>
-      <Columns>
-        {columnLength.map(col => (
-          <Letters key={col}>{printLetters(lengthLetters, widthRem)}</Letters>
-        ))}
-      </Columns>
-    </Wrapper>
-  )
+    const lengthLetters = Array.from(
+      { length: this.state.heightRem + 1 },
+      (_, i) => i
+    )
+    const columnLength = Array.from(
+      { length: this.state.widthRem },
+      (_, i) => i
+    )
+
+    return (
+      <Wrapper>
+        <Columns>
+          {columnLength.map(col => (
+            <Letters key={col}>{printLetters(lengthLetters, widthRem)}</Letters>
+          ))}
+        </Columns>
+      </Wrapper>
+    )
+  }
 }
 
 const printLetters = (lengthLetters, widthRem) => {
