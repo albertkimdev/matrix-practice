@@ -121,7 +121,9 @@ export default class matrix extends React.Component {
       <Wrapper>
         <Columns>
           {columnLength.map(col => (
-            <Letters key={col}>{printLetters(lengthLetters, widthRem)}</Letters>
+            <Letters key={col}>
+              {printLetters(lengthLetters, this.state.widthRem)}
+            </Letters>
           ))}
         </Columns>
       </Wrapper>
