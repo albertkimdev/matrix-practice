@@ -122,7 +122,10 @@ export default class matrix extends React.Component {
         <Columns>
           {columnLength.map(col => (
             <Letters key={col}>
-              {printLetters(lengthLetters, this.state.widthRem)}
+              <PrintLetters
+                lengthLetters={lengthLetters}
+                widthRem={this.state.widthRem}
+              />
             </Letters>
           ))}
         </Columns>
@@ -131,21 +134,30 @@ export default class matrix extends React.Component {
   }
 }
 
-const printLetters = (lengthLetters, widthRem) => {
-  const [show, setShow] = useState(false)
-  const randomNumber = Math.floor(Math.random() * Math.floor(widthRem)) * 1000
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShow(true)
-    }, randomNumber)
-  }, [])
-  if (show) {
-    return lengthLetters.map((letz, i) => (
-      <Letter key={i} delay={i}>
-        {sample(letters)}
-      </Letter>
-    ))
+class PrintLetters extends React.Component {
+  state = {
+    show: false,
   }
-  return null
+
+  componentDidMount() {
+    const randomNumber =
+      Math.floor(Math.random() * Math.floor(this.props.widthRem)) * 1000
+    setTimeout(() => {
+      this.setState({
+        show: true,
+      })
+    }, randomNumber)
+  }
+
+  render() {
+    if (this.state.show) {
+      return this.props.lengthLetters.map((letz, i) => (
+        <Letter key={i} delay={i}>
+          {sample(letters)}
+        </Letter>
+      ))
+    }
+
+    return null
+  }
 }
