@@ -80,7 +80,7 @@ const fadeOut = keyframes`
   0% {
     opacity: 1;
   }
-  28% {
+  10% {
 
     color: ${matrixGreen[0]};
   }
