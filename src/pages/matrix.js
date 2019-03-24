@@ -20,7 +20,6 @@ const Columns = styled.div`
   margin: 0;
 `
 const Letters = styled.div`
-  /* border: 1px solid white; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,21 +27,11 @@ const Letters = styled.div`
     opacity: 0;
     padding: 0;
     margin: 0;
-    color: white;
+    color: ${matrixGreen[0]};
     font-size: 2rem;
   }
 `
 
-// const fade = keyframes`
-//   0% {
-//     opacity: 0;
-//   }
-
-//   100% {
-//     opacity: 1;
-//     /* color: ${matrixGreen[1]}; */
-//   }
-// `
 const fade = keyframes`
   0% {
     opacity: 0;
@@ -53,40 +42,13 @@ const fade = keyframes`
 
   100% {
     opacity: 1;
-    /* color: ${matrixGreen[1]}; */
-  }
-`
-const colorDo = keyframes`
-
-  0% {
-    color: white;
-  }
-
-  4% {
-
-    color: ${matrixGreen[0]};
-  }
-
-  6% {
-    color: ${matrixGreen[1]};
-  }
-
-
-  100% {
-    color: ${matrixGreen[1]};
   }
 `
 const fadeOut = keyframes`
   0% {
     opacity: 1;
   }
-  10% {
-
-    color: ${matrixGreen[0]};
-  }
-  /* 58% {
-    /* color: ${matrixGreen[1]}; */
-  80% {
+  50% {
     opacity: 0;
   }
 
@@ -100,11 +62,6 @@ const Letter = styled.p`
   animation-delay: ${props => props.delay * 0.1}s;
   animation-fill-mode: forwards;
   animation-duration: 5s, 9s;
-  /* animation: ${fade}, ${colorDo}, ${fadeOut};
-  animation-delay: ${props => props.delay * 0.1}s,
-    ${props => props.delay * 0.1}s, ${props => props.delay * 0.25}s;
-  animation-fill-mode: forwards;
-  animation-duration: 0.1s, 2.5s, 0.8s; */
 `
 
 export default class matrix extends React.Component {
