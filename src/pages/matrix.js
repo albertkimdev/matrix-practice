@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styled, { keyframes } from "styled-components"
 import sample from "lodash.sample"
-import { TimelineMax, TweenLite } from "gsap"
 import letters from "../letters"
 import "normalize.css"
 
@@ -29,7 +28,7 @@ const Letters = styled.div`
     opacity: 0;
     padding: 0;
     margin: 0;
-    color: ${matrixGreen[0]};
+    color: white;
     font-size: 2rem;
   }
 `
@@ -59,9 +58,19 @@ const fade = keyframes`
 `
 const colorDo = keyframes`
 
-  50% {
+  0% {
+    color: white;
+  }
+
+  4% {
+
     color: ${matrixGreen[0]};
   }
+
+  6% {
+    color: ${matrixGreen[1]};
+  }
+
 
   100% {
     color: ${matrixGreen[1]};
@@ -72,6 +81,12 @@ const fadeOut = keyframes`
     opacity: 1;
   }
   28% {
+
+    color: ${matrixGreen[0]};
+  }
+  /* 58% {
+    /* color: ${matrixGreen[1]}; */
+  80% {
     opacity: 0;
   }
 
@@ -84,7 +99,7 @@ const Letter = styled.p`
   animation: ${fade} infinite, ${fadeOut} infinite;
   animation-delay: ${props => props.delay * 0.1}s;
   animation-fill-mode: forwards;
-  animation-duration: 5s, 7s;
+  animation-duration: 5s, 9s;
   /* animation: ${fade}, ${colorDo}, ${fadeOut};
   animation-delay: ${props => props.delay * 0.1}s,
     ${props => props.delay * 0.1}s, ${props => props.delay * 0.25}s;
@@ -121,7 +136,7 @@ export default class matrix extends React.Component {
       <Wrapper>
         <Columns>
           {columnLength.map(col => (
-            <Letters key={col}>
+            <Letters>
               <PrintLetters
                 lengthLetters={lengthLetters}
                 widthRem={this.state.widthRem}
@@ -140,8 +155,7 @@ class PrintLetters extends React.Component {
   }
 
   componentDidMount() {
-    const randomNumber =
-      Math.floor(Math.random() * Math.floor(this.props.widthRem)) * 1000
+    const randomNumber = Math.random() * Math.floor(this.props.widthRem) * 1000
     setTimeout(() => {
       this.setState({
         show: true,
